@@ -1,0 +1,132 @@
+<div class="container mt-3">
+  <ngb-toast
+    *ngIf="toastModel.show"
+    [header]="toastModel.title"
+    [autohide]="false"
+    [class]="toastModel.classname"
+    (hidden)="toastModel.show = false"
+    [autohide]="true"
+    [delay]="30000"
+  >
+    {{ toastModel.subtitle }}
+  </ngb-toast>
+  <div class="row w-100 d-flex pb-3 justify-content-center m-0">
+    <div class="col-md-6 p-0">
+      <span class="text-primary h2 fw-bold"> Clientes </span>
+    </div>
+    <div class="col-md-3 p-0 d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" (click)="onCreate()">
+        Crear
+      </button>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered table-striped table-hover"
+          aria-label="Customers"
+        >
+          <thead class="text-center">
+            <tr>
+              <th scope="col">Nombres</th>
+              <th scope="col">Apellidos</th>
+              <th scope="col">Tipo documento</th>
+              <th scope="col">Documento</th>
+              <th scope="col">Celular</th>
+              <th scope="col">Sucursal</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody class="text-left">
+            <tr *ngFor="let item of customers">
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.firstName }}"
+                >
+                  {{ item.firstName }}
+                </div>
+              </td>
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.lastName }}"
+                >
+                  {{ item.lastName }}
+                </div>
+              </td>
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.documentType.name }}"
+                >
+                  {{ item.documentType.name }}
+                </div>
+              </td>
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.document }}"
+                >
+                  {{ item.document }}
+                </div>
+              </td>
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.phone }}"
+                >
+                  {{ item.phone }}
+                </div>
+              </td>
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.vehicleDealer.name }}"
+                >
+                  Sede : {{ item.vehicleDealer.name }}
+                  <br />
+                  Ciudad : {{ item.vehicleDealer.city.name }}
+                </div>
+              </td>
+              <td>
+                <div
+                  *ngIf="item"
+                  class="d-inline-block"
+                  ngbTooltip="{{ item.status }}"
+                >
+                  {{
+                    item.status == StatusEnum.Enabled ? "Activo" : "Inactivo"
+                  }}
+                </div>
+              </td>
+              <td class="text-center">
+                <i
+                  class="fa-solid fa-pencil p-2"
+                  placement="bottom"
+                  ngbTooltip="Editar"
+                  (click)="onEdit(item)"
+                ></i>
+                <i
+                  class="fa-solid fa-trash-can p-2"
+                  placement="bottom"
+                  ngbTooltip="Eliminar"
+                  (click)="onDelete(item)"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

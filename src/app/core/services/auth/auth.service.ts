@@ -10,17 +10,15 @@ import { User } from '@shared/models';
   providedIn: 'root',
 })
 export class AuthService {
-  public readonly urlAuth: string = 'assets/data/user.json';
-  public readonly userKey: string = '"US3R"';
+  public readonly url: string = 'assets/data/user.json';
+  public readonly userKey: string = 'US3R';
   public user: User = Object.assign({});
 
   constructor(private http: HttpClient, private storage: Storage) {}
 
   login(): Promise<User> {
     return firstValueFrom(
-      this.http
-        .get<User>(this.urlAuth)
-        .pipe(tap((user) => this.storageUser(user)))
+      this.http.get<User>(this.url).pipe(tap((user) => this.storageUser(user)))
     );
   }
 

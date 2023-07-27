@@ -1,6 +1,6 @@
 import { City } from './city.model';
 
-export interface VehicleDealers {
+export interface VehicleDealer {
   id: number;
   name: string;
   city: City;

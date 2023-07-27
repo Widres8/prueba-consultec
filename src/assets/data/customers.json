@@ -1,0 +1,22 @@
+[
+  {
+    "document": "987654321",
+    "documentType": {
+      "id": 1,
+      "name": "Cedula de ciudadania"
+    },
+    "firstName": "Carlos",
+    "id": 1,
+    "lastName": "Lopez",
+    "phone": "3001234578",
+    "status": 1,
+    "vehicleDealer": {
+      "city": {
+        "id": 1,
+        "name": "Bogota"
+      },
+      "id": 1,
+      "name": "Automotriz Floresta"
+    }
+  }
+]

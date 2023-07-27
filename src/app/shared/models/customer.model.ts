@@ -1,11 +1,14 @@
-import { VehicleDealers } from './vehicle-dealers.model';
+import { StatusEnum } from '@shared/enums';
+import { DocumentType } from './document-type.model';
+import { VehicleDealer } from './vehicle-dealer.model';
 
 export interface Customer {
   id: number;
   firstName: string;
   lastName: string;
-  documentType: string;
+  documentType: DocumentType;
   document: string;
   phone: string;
-  vehicleDealer: VehicleDealers;
+  vehicleDealer: VehicleDealer;
+  status: StatusEnum;
 }

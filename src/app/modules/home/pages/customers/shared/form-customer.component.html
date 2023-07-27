@@ -1,0 +1,261 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="firstName" class="text-primary fw-bold mb-2">
+          Nombres<span class="text-danger">*</span>
+        </label>
+        <input
+          formControlName="firstName"
+          type="text"
+          class="form-control mb-2"
+          placeholder="Nombres"
+        />
+        <div
+          *ngIf="
+            form.controls['firstName'] &&
+            (form.controls['firstName']!.dirty ||
+              form.controls['firstName']!.touched)
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="form.controls['firstName']!.errors?.['required']"
+          >
+            El campo es requerido
+          </div>
+
+          <div
+            class="text-danger"
+            *ngIf="form.controls['firstName']!.errors?.['maxlength']"
+          >
+            El tamaño maxímo permitido es:
+            {{
+              form.controls['firstName']!.errors?.['maxlength'].requiredLength
+
+            }}, actual:
+            {{
+              form.controls['firstName']!.errors?.['maxlength'].actualLength
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="lastName" class="text-primary fw-bold mb-2">
+          Apellidos<span class="text-danger">*</span>
+        </label>
+        <input
+          formControlName="lastName"
+          type="text"
+          class="form-control mb-2"
+          placeholder="Apellidos"
+        />
+        <div
+          *ngIf="
+            form.controls['lastName'] &&
+            (form.controls['lastName']!.dirty ||
+              form.controls['lastName']!.touched)
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="form.controls['lastName']!.errors?.['required']"
+          >
+            El campo es requerido
+          </div>
+
+          <div
+            class="text-danger"
+            *ngIf="form.controls['lastName']!.errors?.['maxlength']"
+          >
+            El tamaño maxímo permitido es:
+            {{
+              form.controls['lastName']!.errors?.['maxlength'].requiredLength
+
+            }}, actual:
+            {{
+              form.controls['lastName']!.errors?.['maxlength'].actualLength
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="documentType" class="text-primary fw-bold mb-2">
+          Tipo Documento<span class="text-danger">*</span>
+        </label>
+        <ng-select
+          [items]="documentTypes"
+          bindLabel="name"
+          formControlName="documentType"
+          placeholder="Tipo Documento"
+        >
+        </ng-select>
+        <div
+          *ngIf="
+            form.controls['documentType'] &&
+            (form.controls['documentType']!.dirty ||
+              form.controls['documentType']!.touched)
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="form.controls['documentType']!.errors?.['required']"
+          >
+            El campo es requerido
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="form.controls['documentType']!.errors?.['maxlength']"
+          >
+            El tamaño maxímo permitido es:
+            {{
+              form.controls['documentType']!.errors?.['maxlength'].requiredLength
+
+
+
+
+            }}, actual:
+            {{
+              form.controls['documentType']!.errors?.['maxlength'].actualLength
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="document" class="text-primary fw-bold mb-2">
+          Documento<span class="text-danger">*</span>
+        </label>
+        <input
+          formControlName="document"
+          type="text"
+          class="form-control mb-2"
+          placeholder="Documento"
+        />
+        <div
+          *ngIf="
+            form.controls['document'] &&
+            (form.controls['document']!.dirty ||
+              form.controls['document']!.touched)
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="form.controls['document']!.errors?.['required']"
+          >
+            El campo es requerido
+          </div>
+
+          <div
+            class="text-danger"
+            *ngIf="form.controls['document']!.errors?.['maxlength']"
+          >
+            El tamaño maxímo permitido es:
+            {{
+              form.controls['document']!.errors?.['maxlength'].requiredLength
+
+
+            }}, actual:
+            {{
+              form.controls['document']!.errors?.['maxlength'].actualLength
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="phone" class="text-primary fw-bold mb-2">
+          Celular<span class="text-danger">*</span>
+        </label>
+        <input
+          formControlName="phone"
+          type="text"
+          class="form-control mb-2"
+          placeholder="Celular"
+        />
+        <div
+          *ngIf="
+            form.controls['phone'] &&
+            (form.controls['phone']!.dirty || form.controls['phone']!.touched)
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="form.controls['phone']!.errors?.['required']"
+          >
+            El campo es requerido
+          </div>
+
+          <div
+            class="text-danger"
+            *ngIf="form.controls['phone']!.errors?.['maxlength']"
+          >
+            El tamaño maxímo permitido es:
+            {{
+              form.controls['phone']!.errors?.['maxlength'].requiredLength
+
+
+            }}, actual:
+            {{
+              form.controls['phone']!.errors?.['maxlength'].actualLength
+            }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group mb-4">
+        <label for="vehicleDealer" class="text-primary fw-bold mb-2">
+          Sucursal<span class="text-danger">*</span>
+        </label>
+        <ng-select
+          [items]="vehicleDealers"
+          bindLabel="name"
+          formControlName="vehicleDealer"
+          placeholder="Sucursal"
+        >
+        </ng-select>
+        <div
+          *ngIf="
+            form.controls['vehicleDealer'] &&
+            (form.controls['vehicleDealer']!.dirty ||
+              form.controls['vehicleDealer']!.touched)
+          "
+        >
+          <div
+            class="text-danger"
+            *ngIf="form.controls['vehicleDealer']!.errors?.['required']"
+          >
+            El campo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-0 d-flex justify-content-between mb-3 mt-3">
+    <button
+      type="button"
+      class="btn btn-outline-primary rounded-1"
+      (click)="onClose()"
+    >
+      <i class="fa-solid fa-xmark"></i>
+      Cancelar
+    </button>
+
+    <button
+      type="submit"
+      class="btn btn-primary rounded-1"
+      [disabled]="form.invalid"
+    >
+      <i class="fa-solid fa-floppy-disk"></i>
+      Guardar
+    </button>
+  </div>
+</form>

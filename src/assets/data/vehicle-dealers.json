@@ -1,0 +1,42 @@
+[
+  {
+    "city": {
+      "id": 1,
+      "name": "Bogota"
+    },
+    "id": 1,
+    "name": "Automotriz Floresta"
+  },
+  {
+    "city": {
+      "id": 2,
+      "name": "Medellin"
+    },
+    "id": 2,
+    "name": "Automotriz Poblado"
+  },
+  {
+    "city": {
+      "id": 3,
+      "name": "Cali"
+    },
+    "id": 3,
+    "name": "Automotriz San Juan"
+  },
+  {
+    "city": {
+      "id": 4,
+      "name": "Bucaramanga"
+    },
+    "id": 4,
+    "name": "Automotriz Rosales"
+  },
+  {
+    "city": {
+      "id": 5,
+      "name": "Manizales"
+    },
+    "id": 5,
+    "name": "Automotriz Chipre"
+  }
+]
