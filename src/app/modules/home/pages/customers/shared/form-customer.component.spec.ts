@@ -8,7 +8,13 @@ describe('FormCustomerComponent', () => {
   let service: VehicleDealersService;
 
   beforeEach(async () => {
-    activeModal = jasmine.createSpyObj('NgbActiveModal', ['close']);
+    activeModal = jasmine.createSpyObj<NgbActiveModal>('NgbActiveModal', [
+      'close',
+    ]);
+    service = jasmine.createSpyObj<VehicleDealersService>(
+      'VehicleDealersService',
+      ['getAll']
+    );
     component = new FormCustomerComponent(activeModal, service);
   });
 

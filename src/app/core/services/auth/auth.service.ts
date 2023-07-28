@@ -32,7 +32,8 @@ export class AuthService {
   }
 
   async isAuthenticate(): Promise<boolean> {
-    let result = this.storage.getItem(this.userKey);
+    const result = this.storage.getItem(this.userKey);
+
     return result != null;
   }
 }

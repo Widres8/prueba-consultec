@@ -80,6 +80,7 @@
           "options": {
             "assets": ["src/favicon.ico", "src/assets"],
             "inlineStyleLanguage": "scss",
+            "karmaConfig": "karma.conf.js",
             "polyfills": ["zone.js", "zone.js/testing"],
             "scripts": [],
             "styles": ["src/styles.scss"],

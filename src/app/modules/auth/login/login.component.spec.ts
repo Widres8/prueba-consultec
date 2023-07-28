@@ -1,72 +1,56 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '@app/core/services/services';
+import { AuthService } from '@core/services';
+import { User } from '@shared/models';
+import { lastValueFrom, of } from 'rxjs';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
-  let fixture: ComponentFixture<LoginComponent>;
-
-  let router: Router;
   let authService: AuthService;
+  const router = jasmine.createSpyObj<Router>(['navigate']);
+  router.navigate.and.returnValue(lastValueFrom(of(true)));
 
   beforeEach(async () => {
-    router = jasmine.createSpyObj<Router>('Router', ['navigate']);
     authService = jasmine.createSpyObj<AuthService>('AuthService', [
       'login',
       'isAuthenticate',
     ]);
-    await TestBed.configureTestingModule({
-      declarations: [LoginComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    })
-      .overrideComponent(LoginComponent, {
-        set: {
-          providers: [
-            { provide: AuthService, useValue: authService },
-            { provide: Router, useValue: router },
-          ],
-        },
-      })
-      .compileComponents();
-  });
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(LoginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-    component.initForm();
+    component = new LoginComponent(authService, router);
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`#${LoginComponent.prototype.initForm} Must excecute initForm()`, () => {
+  it(`#LoginComponent ngOnInit()`, () => {
+    component.ngOnInit();
     expect(component).toBeTruthy();
   });
 
-  it(`#${LoginComponent.prototype.resetUserValidation} Must excecute resetUserValidation()`, () => {
+  it(`#LoginComponent resetUserValidation()`, () => {
     component.resetUserValidation();
     expect(component.validCredentials).toEqual(true);
   });
 
-  it(`#${LoginComponent.prototype.toggleShowPassword} Must excecute toggleShowPassword()`, () => {
+  it(`#LoginComponent toggleShowPassword()`, () => {
     component.toggleShowPassword();
     expect(component.showPassword).toEqual(true);
   });
 
-  it(`#${LoginComponent.prototype.onSubmit} Must excecute onSubmit()`, async () => {
-    (authService.login as jasmine.Spy).and.returnValue({ result: 'true' });
-    (authService.isAuthenticate as jasmine.Spy).and.returnValue(true);
-    component.form.get('user')?.setValue(new FormControl('user1'));
-    component.form.get('password')?.setValue(new FormControl('123'));
+  it(`#LoginComponent onSubmit()`, async () => {
+    const { username, password } = { username: 'admin', password: '123456' };
+    const model: User = {
+      email: '',
+      password,
+      username,
+    };
+    (authService.login as jasmine.Spy).and.resolveTo(model);
+    component.initForm();
+    component.form.patchValue({
+      username: username,
+      password: password,
+    });
     component.onSubmit();
-    expect(await authService.isAuthenticate()).toEqual(true);
-    (authService.isAuthenticate as jasmine.Spy).and.returnValue(false);
-    component.onSubmit();
-    expect(await authService.isAuthenticate()).toEqual(false);
+    expect(component.validCredentials).toEqual(true);
   });
 });

@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 
-import { AuthService } from '@app/core/services/services';
+import { AuthService } from '@core/services';
 import { HomeComponent } from './home.component';
 
 describe(`#${HomeComponent.name}`, () => {
@@ -12,7 +12,7 @@ describe(`#${HomeComponent.name}`, () => {
   let authService: AuthService;
 
   beforeEach(async () => {
-    authService = jasmine.createSpyObj<AuthService>('AuthService', ['get']);
+    authService = jasmine.createSpyObj<AuthService>('AuthService', ['login']);
 
     TestBed.configureTestingModule({
       declarations: [HomeComponent],

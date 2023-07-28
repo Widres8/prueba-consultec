@@ -1,4 +1,5 @@
-import { VehicleDealers } from '@shared/models';
+import { HttpClient } from '@angular/common/http';
+import { VehicleDealer } from '@shared/models';
 import { of } from 'rxjs';
 import { VehicleDealersService } from './vehicle-dealers.service';
 
@@ -7,7 +8,10 @@ describe(`#${VehicleDealersService.name}`, () => {
   let httpClientSpy: { post: jasmine.Spy; get: jasmine.Spy };
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['post', 'get']);
+    httpClientSpy = jasmine.createSpyObj<HttpClient>('HttpClient', [
+      'post',
+      'get',
+    ]);
     service = new VehicleDealersService(httpClientSpy as any);
   });
 
@@ -17,7 +21,7 @@ describe(`#${VehicleDealersService.name}`, () => {
 
   it(`#${VehicleDealersService.prototype.getAll.name} get all`, async () => {
     const endpoint = service.url;
-    const model: VehicleDealers[] = [];
+    const model: VehicleDealer[] = [];
     httpClientSpy.get.withArgs(`${endpoint}`).and.returnValue(of(model));
     const result = await service.getAll();
     expect(result).toEqual(model);

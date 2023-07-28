@@ -35,6 +35,7 @@ import { Customer } from '@shared/models';
   `,
 })
 export class DeleteCustomerComponent {
+  [x: string]: {};
   item: Customer = Object.assign({});
 
   constructor(
